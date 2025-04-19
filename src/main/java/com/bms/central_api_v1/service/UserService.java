@@ -10,9 +10,9 @@ public class UserService {
     @Autowired
     DBAPI dbapi;
 
-    public void registerUser(createuserRB userRB){
+    public Object registerUser(createuserRB userRB){
 
-        dbapi.createUser(userRB);
+        return dbapi.callcreateUserEndpoint(userRB);
 
     }
 

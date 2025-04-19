@@ -12,8 +12,9 @@ import com.bms.central_api_v1.util.Mapper;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.HashMap;
 
-public class DBAPI {
+public class DBAPI extends RestAPI{
 
 
     @Value("${db.api.base}")
@@ -22,28 +23,16 @@ public class DBAPI {
     @Autowired
     Mapper mapper;
 
-    public AppUser callcreateUserEndpoint(@RequestBody createuserRB createuserRB){
+    public Object callcreateUserEndpoint(@RequestBody createuserRB createuserRB){
         // Create url.
-        String url = baseUrl + "/user/create";
-        URI finalUrl = URI.create(url);
-        AppUser appUser;
-        appUser = mapper.mapCreateUserRBToAppUser(createuserRB);
-        // start creating request
-        RequestEntity<Object> request = RequestEntity.post(finalUrl).body(appUser);
 
-        RestTemplate restTemplate = new RestTemplate();
+        AppUser appUser = mapper.mapCreateUserRBToAppUser(createuserRB);
 
-        ResponseEntity<AppUser> responseEntity = restTemplate.exchange(finalUrl, HttpMethod.POST,request, AppUser.class);
+        String endPoint = "/user/create";
 
-        return responseEntity.getBody();
+        Object resp = this.makePostCall(baseUrl,endPoint,appUser,new HashMap<>());
 
-
-
-
-
-
-
-
+        return resp;
 
     }
 
