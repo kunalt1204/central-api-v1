@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class mapper{
+public class Mapper {
 
     public AppUser mapCreateUserRBToAppUser(createuserRB createUserRB) {
         AppUser appUser = new AppUser();
