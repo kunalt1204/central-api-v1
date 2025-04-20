@@ -46,7 +46,7 @@ public abstract class RestAPI {
 
     }
 
-    public Object makeGetCall(String apiEndPoint,String apiBaseUrl, Map<String,String> queryParams,Object responseBody){
+    public Object makeGetCall(String apiEndPoint,String apiBaseUrl, Map<String,String> queryParams){
 
         String url = apiBaseUrl + apiEndPoint;
 
